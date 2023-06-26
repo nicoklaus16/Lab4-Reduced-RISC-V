@@ -8,7 +8,7 @@ module RV32I #(
     output logic [WIDTH-1:0]    a0
 );
 
-    logic PCsrc, RegWrite, ALUsrc;
+    logic PCsrc, RegWrite, ALUsrc, EQ;
     logic [WIDTH-1:0] ImmOp;
     logic [WIDTH-1:0] PC;
     logic [WIDTH-1:0] instr;
@@ -34,7 +34,7 @@ module RV32I #(
     );
 
     controlunit CU1 (
-        .zero(),
+        .EQ(EQ),
         .opcode(instr[6:0]),
         .funct7(instr[31:25]),
         .funct3(instr[14:12]),
@@ -69,7 +69,7 @@ module RV32I #(
         .ALUop1(ALUop1),
         .ALUop2(ALUop2),
         .ALUctrl(ALUctrl),
-        .EQ(),
+        .EQ(EQ),
         .ALUout(ALUout)
     );
     

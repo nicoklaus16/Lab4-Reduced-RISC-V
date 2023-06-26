@@ -6,7 +6,7 @@ module controlunit #(
                 aluopWIDTH = 3,
                 typeWIDTH = 3
 ) (
-    input logic                     zero,
+    input logic                     EQ,
     input logic [OCWIDTH-1:0]       opcode,
     input logic [F7WIDTH-1:0]       funct7,
     input logic [F3WIDTH-1:0]       funct3,
@@ -22,7 +22,7 @@ module controlunit #(
             7'b0010011: case (funct3)
                             // addi
                             3'b000: begin
-                                RegWrite = 0;
+                                RegWrite = 1;
                                 ALUsrc = 1;
                                 ImmSrc = 3'b000;
                                 PCsrc = 0;
@@ -42,8 +42,11 @@ module controlunit #(
                         // bne
                         3'b001: begin
                             RegWrite = 0;
+                            ALUsrc = 0;
                             ImmSrc = 3'b010;
-                            PCsrc = 1;
+                            if (EQ)     PCsrc = 0;
+                            else        PCsrc = 1;
+                            //SHOULD I SPECIFY ALUCTRL???
                         end
 
                         default: begin

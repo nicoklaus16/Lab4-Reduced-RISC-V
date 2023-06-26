@@ -21,22 +21,22 @@ module registerfile #(
         case (AD1)
             5'h0: RD1 <= zero;
             5'h6: RD1 <= t1;
-            5'h11: RD1 <= a1;
+            5'hB: RD1 <= a1;
             default: RD1 <= {WIDTH{1'b0}};
         endcase
 
         case (AD2)
             5'h0: RD2 <= zero;
             5'h6: RD2 <= t1;
-            5'h11: RD2 <= a1;
+            5'hB: RD2 <= a1;
             default: RD2 <= {WIDTH{1'b0}};
         endcase
 
         if (RegWrite)
             case (AD3)
                 5'h6: t1 <= WD3;
-                5'h10: a0 <= WD3;
-                5'h11: a1 <= WD3;
+                5'hA: a0 <= WD3;
+                5'hB: a1 <= WD3;
                 default: begin
                     t1 <= {WIDTH{1'b0}};
                     a0 <= {WIDTH{1'b0}};

@@ -14,6 +14,9 @@ module ALU #(
             3'b0: ALUout = ALUop1 + ALUop2;
             default: ALUout = {WIDTH{1'b0}};
         endcase
+
+        if (ALUop1 == ALUop2)   EQ = 1;
+        else                    EQ = 0;
     end
     
 endmodule

@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **env) {
     top->rst = 1;
 
     //run simulation for 150 clock cycles
-    for (simcyc=0; simcyc<30; simcyc++){
+    for (simcyc=0; simcyc<1000; simcyc++){
 
         //dump variables into VCD file and toggle clock
         for (clk=0; clk<2; clk++) {
